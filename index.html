@@ -1,220 +1,349 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>אתר היכרויות</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>התחברות | אתר היכרויות</title>
     <style>
         * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
         }
-        
+
         body {
-            background-color: #f0f8ff;
-            color: #333;
-            line-height: 1.6;
-        }
-        
-        header {
-            background-color: #1e3a8a;
-            color: white;
-            padding: 1.5rem;
-            text-align: center;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem;
-        }
-        
-        .tabs {
+            min-height: 100vh;
             display: flex;
+            align-items: center;
             justify-content: center;
-            margin-bottom: 2rem;
-            gap: 1rem;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 40%, #fbc2eb 100%);
         }
-        
-        .tab {
-            padding: 0.8rem 2rem;
-            background-color: #4a6bdf;
-            color: white;
-            border: none;
-            border-radius: 25px;
-            cursor: pointer;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-        }
-        
-        .tab.active {
-            background-color: #7c4dff;
-            transform: translateY(-3px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        }
-        
-        .cards-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 2rem;
-            padding: 1rem;
-        }
-        
-        .card {
-            background: white;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
-            background-color: #f8f5ff;
-            border: 1px solid #e2d5ff;
-        }
-        
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-        }
-        
-        .card-img {
+
+        .auth-wrapper {
             width: 100%;
-            height: 250px;
-            object-fit: cover;
+            max-width: 450px;
+            background: #ffffffdd;
+            backdrop-filter: blur(10px);
+            border-radius: 18px;
+            box-shadow: 0 18px 45px rgba(0, 0, 0, 0.18);
+            padding: 28px 28px 26px;
         }
-        
-        .card-content {
-            padding: 1.5rem;
-        }
-        
-        .card h3 {
-            color: #4a4a8a;
-            margin-bottom: 0.5rem;
-        }
-        
-        .card p {
-            color: #666;
-            font-size: 0.9rem;
-            margin-bottom: 1rem;
-        }
-        
-        .card-actions {
+
+        .logo {
             display: flex;
-            justify-content: space-between;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 18px;
         }
-        
-        .btn {
-            padding: 0.6rem 1.2rem;
-            border: none;
-            border-radius: 20px;
-            cursor: pointer;
+
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 999px;
+            background: radial-gradient(circle at 30% 30%, #fff, #ff4e88);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-weight: 700;
+        }
+
+        .logo-text-main {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: #3a1e3b;
+        }
+
+        .logo-text-sub {
+            font-size: 0.8rem;
+            color: #7b7b8b;
+        }
+
+        .auth-title {
+            font-size: 1.35rem;
             font-weight: 600;
-            transition: all 0.3s ease;
+            color: #2e1330;
+            margin-bottom: 4px;
+            text-align: right;
         }
-        
-        .btn-like {
-            background-color: #7c4dff;
-            color: white;
+
+        .auth-subtitle {
+            font-size: 0.9rem;
+            color: #6b6b7b;
+            margin-bottom: 18px;
+            text-align: right;
         }
-        
-        .btn-dislike {
-            background-color: #e0e0e0;
-            color: #666;
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
         }
-        
-        .btn:hover {
-            opacity: 0.9;
-            transform: scale(1.05);
+
+        .field-label {
+            font-size: 0.82rem;
+            color: #45455a;
+            margin-bottom: 3px;
         }
-        
-        footer {
-            background-color: #1e3a8a;
-            color: white;
+
+        .field-group {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 4px;
+        }
+
+        .field-input,
+        .field-select {
+            padding: 10px 11px;
+            border-radius: 10px;
+            border: 1px solid #ddd9e6;
+            font-size: 0.9rem;
+            outline: none;
+            background: #faf7ff;
+            transition: border-color 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+        }
+
+        .field-input:focus,
+        .field-select:focus {
+            border-color: #ff4f8a;
+            background: #fff;
+            box-shadow: 0 0 0 1px rgba(255, 79, 138, 0.35);
+        }
+
+        .field-inline-row {
+            display: flex;
+            gap: 8px;
+        }
+
+        .field-inline-row .field-group {
+            flex: 1;
+        }
+
+        .helper-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 4px;
+            margin-bottom: 8px;
+            font-size: 0.8rem;
+        }
+
+        .remember {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: #55556a;
+        }
+
+        .remember input[type="checkbox"] {
+            width: 14px;
+            height: 14px;
+            accent-color: #ff4f8a;
+        }
+
+        .link {
+            color: #ff4f8a;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .link:hover {
+            text-decoration: underline;
+        }
+
+        .primary-btn {
+            border: none;
+            border-radius: 999px;
+            padding: 11px 0;
+            margin-top: 4px;
+            background: linear-gradient(135deg, #ff4f8a, #ff7364);
+            color: #fff;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            box-shadow: 0 8px 20px rgba(255, 79, 138, 0.35);
+            transition: transform 0.1s ease, box-shadow 0.1s ease, filter 0.1s ease;
+        }
+
+        .primary-btn:hover {
+            transform: translateY(-1px);
+            filter: brightness(1.03);
+            box-shadow: 0 10px 24px rgba(255, 79, 138, 0.45);
+        }
+
+        .primary-btn:active {
+            transform: translateY(0);
+            box-shadow: 0 6px 16px rgba(255, 79, 138, 0.3);
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.78rem;
+            color: #8c8c9c;
+            margin: 12px 0 10px;
+        }
+
+        .divider-line {
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(to left, transparent, #d3cce3, transparent);
+        }
+
+        .bottom-text {
+            margin-top: 8px;
             text-align: center;
-            padding: 1.5rem;
-            margin-top: 3rem;
+            font-size: 0.85rem;
+            color: #55556a;
         }
-        
-        @media (max-width: 768px) {
-            .cards-container {
-                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+
+        .role-hint {
+            font-size: 0.78rem;
+            color: #8a8299;
+            margin-top: 2px;
+        }
+
+        .permissions-note {
+            margin-top: 10px;
+            padding: 8px 10px;
+            border-radius: 10px;
+            background: #fff5fa;
+            border: 1px dashed #ff9cbd;
+            font-size: 0.78rem;
+            color: #7b425e;
+        }
+
+        @media (max-width: 520px) {
+            .auth-wrapper {
+                margin: 12px;
+                padding: 22px 18px 18px;
+            }
+
+            .field-inline-row {
+                flex-direction: column;
             }
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>אהבה במבט ראשון ❤️</h1>
-        <p>מצאו את אהבתכם האמיתית איתנו</p>
-    </header>
-    
-    <div class="container">
-        <div class="tabs">
-            <button class="tab active">הכרויות חדשות</button>
-            <button class="tab">התאמות</button>
-            <button class="tab">הודעות</button>
-            <button class="tab">פרופיל</button>
-        </div>
-        
-        <div class="cards-container">
-            <!-- כרטיס 1 -->
-            <div class="card">
-                <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="פרופיל" class="card-img">
-                <div class="card-content">
-                    <h3>יעל</h3>
-                    <p>תל אביב, 28</p>
-                    <p>אוהבת טיולים, מוזיקה טובה ואוכל טעים. מחפשת מישהו שיודע להעלות חיוך על הפנים.</p>
-                    <div class="card-actions">
-                        <button class="btn btn-dislike">דילוג</button>
-                        <button class="btn btn-like">❤️ אהבתי</button>
+    <main class="auth-wrapper">
+        <header class="logo" aria-label="לוגו אתר היכרויות">
+            <div class="logo-icon">❤</div>
+            <div>
+                <div class="logo-text-main">LoveMatch</div>
+                <div class="logo-text-sub">הכירו. התחברו. תתאהבו.</div>
+            </div>
+        </header>
+
+        <section aria-labelledby="login-title">
+            <h1 id="login-title" class="auth-title">התחברות לאתר</h1>
+            <p class="auth-subtitle">התחברו לחשבון שלכם כדי להמשיך לצ'אטים, התאמות והודעות חדשות.</p>
+
+            <!--
+              שים לב:
+              כרגע זהו צד לקוח (Front-End) בלבד.
+              כדי לעבוד עם הרשאות אמיתיות צריך לחבר לשרת (API) שמבצע אימות משתמש
+              ומחזיר אסימון גישה (Token) ותפקיד משתמש.
+            -->
+            <form id="login-form" autocomplete="on">
+                <div class="field-group">
+                    <label class="field-label" for="email">אימייל</label>
+                    <input
+                        id="email"
+                        name="email"
+                        type="email"
+                        class="field-input"
+                        placeholder="name@example.com"
+                        required
+                    />
+                </div>
+
+                <div class="field-group">
+                    <label class="field-label" for="password">סיסמה</label>
+                    <input
+                        id="password"
+                        name="password"
+                        type="password"
+                        class="field-input"
+                        placeholder="הקלד/י סיסמה"
+                        minlength="6"
+                        required
+                    />
+                </div>
+
+                <div class="field-inline-row">
+                    <div class="field-group">
+                        <label class="field-label" for="role">סוג משתמש</label>
+                        <select id="role" name="role" class="field-select" required>
+                            <option value="" disabled selected>בחר/י סוג משתמש</option>
+                            <option value="member">משתמש רגיל</option>
+                            <option value="premium">משתמש פרימיום</option>
+                            <option value="admin">מנהל מערכת</option>
+                        </select>
+                        <p class="role-hint">תפקידים שונים יקבלו גישה למסכים ופעולות שונות.</p>
+                    </div>
+
+                    <div class="field-group">
+                        <label class="field-label" for="remember">זיכרון התחברות</label>
+                        <div class="helper-row" style="justify-content: flex-start; gap: 8px;">
+                            <label class="remember">
+                                <input id="remember" name="remember" type="checkbox" />
+                                זכור אותי במחשב זה
+                            </label>
+                        </div>
                     </div>
                 </div>
-            </div>
-            
-            <!-- כרטיס 2 -->
-            <div class="card">
-                <img src="https://randomuser.me/api/portraits/men/44.jpg" alt="פרופיל" class="card-img">
-                <div class="card-content">
-                    <h3>דוד</h3>
-                    <p>חיפה, 31</p>
-                    <p>מפתח תוכנה, אוהב לטייל בארץ, לשחק טניס ולצפות בסרטים. מחפש בת זוג למסע החיים.</p>
-                    <div class="card-actions">
-                        <button class="btn btn-dislike">דילוג</button>
-                        <button class="btn btn-like">❤️ אהבתי</button>
-                    </div>
+
+                <div class="helper-row">
+                    <a href="#" class="link">שכחת סיסמה?</a>
                 </div>
-            </div>
-            
-            <!-- כרטיס 3 -->
-            <div class="card">
-                <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="פרופיל" class="card-img">
-                <div class="card-content">
-                    <h3>נועה</h3>
-                    <p>ירושלים, 26</p>
-                    <p>סטודנטית לרפואה, אוהבת ספרים טובים, קפה וטיולים בטבע. מחפשת מישהו עם חוש הומור.</p>
-                    <div class="card-actions">
-                        <button class="btn btn-dislike">דילוג</button>
-                        <button class="btn btn-like">❤️ אהבתי</button>
-                    </div>
+
+                <button type="submit" class="primary-btn">התחברות</button>
+
+                <div class="permissions-note" aria-live="polite">
+                    לאחר התחברות מוצלחת, השרת צריך להחזיר מידע על תפקיד המשתמש (role) והרשאות (permissions).
+                    בצד הלקוח ניתן לשמור את המידע באופן מאובטח (למשל ב-HTTP-only cookie) ולהסתיר/להציג רכיבים בהתאם לתפקיד.
                 </div>
+            </form>
+
+            <div class="divider" aria-hidden="true">
+                <span class="divider-line"></span>
+                <span>או</span>
+                <span class="divider-line"></span>
             </div>
-        </div>
-    </div>
-    
-    <footer>
-        <p>© 2025 אתר היכרויות - כל הזכויות שמורות</p>
-    </footer>
+
+            <p class="bottom-text">
+                אין לך עדיין חשבון?
+                <a href="#" class="link" id="go-to-register">להרשמה לאתר</a>
+            </p>
+        </section>
+    </main>
 
     <script>
-        // הוספת אנימציה ללחיצה על טאבים
-        const tabs = document.querySelectorAll('.tab');
-        tabs.forEach(tab => {
-            tab.addEventListener('click', () => {
-                tabs.forEach(t => t.classList.remove('active'));
-                tab.classList.add('active');
-            });
+        const loginForm = document.getElementById('login-form');
+
+        loginForm.addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            const formData = new FormData(loginForm);
+            const data = Object.fromEntries(formData.entries());
+
+            // בשלב זה רק מציגים הדמיה של מה שהיה נשלח לשרת
+            alert(
+                'התחברות (דוגמה בלבד)\n\n' +
+                'אימייל: ' + data.email + '\n' +
+                'תפקיד: ' + data.role + '\n' +
+                'זכור אותי: ' + (data.remember ? 'כן' : 'לא') + '\n\n' +
+                'בפרויקט אמיתי כאן תקרא בקשת API לשרת שיבדוק סיסמה ויחזיר הרשאות.'
+            );
+
+            // כאן אפשר יהיה לנווט לעמוד הבית/פרופיל אחרי התחברות מוצלחת
+            // window.location.href = '/home.html';
         });
     </script>
 </body>
 </html>
+
