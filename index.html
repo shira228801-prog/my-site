@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>אתר היכרויות</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f0f8ff;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        header {
+            background-color: #1e3a8a;
+            color: white;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2rem;
+            gap: 1rem;
+        }
+        
+        .tab {
+            padding: 0.8rem 2rem;
+            background-color: #4a6bdf;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .tab.active {
+            background-color: #7c4dff;
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+            padding: 1rem;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            background-color: #f8f5ff;
+            border: 1px solid #e2d5ff;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+        
+        .card-img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+        
+        .card-content {
+            padding: 1.5rem;
+        }
+        
+        .card h3 {
+            color: #4a4a8a;
+            margin-bottom: 0.5rem;
+        }
+        
+        .card p {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+        
+        .card-actions {
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .btn {
+            padding: 0.6rem 1.2rem;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-like {
+            background-color: #7c4dff;
+            color: white;
+        }
+        
+        .btn-dislike {
+            background-color: #e0e0e0;
+            color: #666;
+        }
+        
+        .btn:hover {
+            opacity: 0.9;
+            transform: scale(1.05);
+        }
+        
+        footer {
+            background-color: #1e3a8a;
+            color: white;
+            text-align: center;
+            padding: 1.5rem;
+            margin-top: 3rem;
+        }
+        
+        @media (max-width: 768px) {
+            .cards-container {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>אהבה במבט ראשון ❤️</h1>
+        <p>מצאו את אהבתכם האמיתית איתנו</p>
+    </header>
+    
+    <div class="container">
+        <div class="tabs">
+            <button class="tab active">הכרויות חדשות</button>
+            <button class="tab">התאמות</button>
+            <button class="tab">הודעות</button>
+            <button class="tab">פרופיל</button>
+        </div>
+        
+        <div class="cards-container">
+            <!-- כרטיס 1 -->
+            <div class="card">
+                <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="פרופיל" class="card-img">
+                <div class="card-content">
+                    <h3>יעל</h3>
+                    <p>תל אביב, 28</p>
+                    <p>אוהבת טיולים, מוזיקה טובה ואוכל טעים. מחפשת מישהו שיודע להעלות חיוך על הפנים.</p>
+                    <div class="card-actions">
+                        <button class="btn btn-dislike">דילוג</button>
+                        <button class="btn btn-like">❤️ אהבתי</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- כרטיס 2 -->
+            <div class="card">
+                <img src="https://randomuser.me/api/portraits/men/44.jpg" alt="פרופיל" class="card-img">
+                <div class="card-content">
+                    <h3>דוד</h3>
+                    <p>חיפה, 31</p>
+                    <p>מפתח תוכנה, אוהב לטייל בארץ, לשחק טניס ולצפות בסרטים. מחפש בת זוג למסע החיים.</p>
+                    <div class="card-actions">
+                        <button class="btn btn-dislike">דילוג</button>
+                        <button class="btn btn-like">❤️ אהבתי</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- כרטיס 3 -->
+            <div class="card">
+                <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="פרופיל" class="card-img">
+                <div class="card-content">
+                    <h3>נועה</h3>
+                    <p>ירושלים, 26</p>
+                    <p>סטודנטית לרפואה, אוהבת ספרים טובים, קפה וטיולים בטבע. מחפשת מישהו עם חוש הומור.</p>
+                    <div class="card-actions">
+                        <button class="btn btn-dislike">דילוג</button>
+                        <button class="btn btn-like">❤️ אהבתי</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>© 2025 אתר היכרויות - כל הזכויות שמורות</p>
+    </footer>
+
+    <script>
+        // הוספת אנימציה ללחיצה על טאבים
+        const tabs = document.querySelectorAll('.tab');
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                tabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>
